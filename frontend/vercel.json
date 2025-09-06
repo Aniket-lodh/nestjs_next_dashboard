@@ -1,5 +1,8 @@
 {
-  "cron": {
-    "ping-backend": "*/10 * * * *"
-  }
+  "crons": [
+    {
+      "path": "/api/cron",
+      "schedule": "0 10 * * *"
+    }
+  ]
 }
