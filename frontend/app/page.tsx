@@ -72,36 +72,6 @@ export default function DashboardPage() {
           <CustomerSatisfactionChart />
         </Box>
 
-        {/* Charts */}
-        <Grid container spacing={2} sx={{ mt: 2 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Customer Satisfaction</Typography>
-                <Line
-                  data={{
-                    labels: satisfaction.labels,
-                    datasets: [
-                      {
-                        label: "Last Month",
-                        data: satisfaction.lastMonth,
-                        borderColor: "rgba(255,99,132,1)",
-                        fill: false,
-                      },
-                      {
-                        label: "This Month",
-                        data: satisfaction.thisMonth,
-                        borderColor: "rgba(54,162,235,1)",
-                        fill: false,
-                      },
-                    ],
-                  }}
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-
         {/* Visitors & Products */}
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid size={{ xs: 12, md: 6 }}>
