@@ -4,7 +4,7 @@ Both frontend and backend require environment variables. Copy `.env.example` to 
 
 Frontend:
 
-- NEXT_PUBLIC_API_URL: URL of the backend (e.g., http://localhost:3001/api for local dev, https://myrender.onrender.com/api in prod)
+- NEXT_PUBLIC_API_URL: URL of the backend (e.g., http://localhost:3001/api for local dev, https://nestjs-next-dashboard.onrender.com/api in prod)
 
 Backend:
 
