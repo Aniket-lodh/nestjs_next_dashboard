@@ -19,6 +19,8 @@ import {
 } from "chart.js";
 import TodaysSalesCard from "@/components/TodaysSalesCard";
 import VisitorInsightsChart from "../components/VisitorInsightsChart";
+import TotalRevenueChart from "@/components/TotalRevenueChart";
+import CustomerSatisfactionChart from "@/components/CustomerSatisfactionChart";
 
 ChartJS.register(
   CategoryScale,
@@ -58,33 +60,20 @@ export default function DashboardPage() {
           <VisitorInsightsChart />
         </Box>
 
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            flexWrap: "wrap",
+            alignItems: "stretch",
+          }}
+        >
+          <TotalRevenueChart />
+          <CustomerSatisfactionChart />
+        </Box>
+
         {/* Charts */}
         <Grid container spacing={2} sx={{ mt: 2 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Total Revenue</Typography>
-                <Bar
-                  data={{
-                    labels: revenue.labels,
-                    datasets: [
-                      {
-                        label: "Online Sales",
-                        data: revenue.onlineSales,
-                        backgroundColor: "rgba(75,192,192,0.6)",
-                      },
-                      {
-                        label: "Offline Sales",
-                        data: revenue.offlineSales,
-                        backgroundColor: "rgba(153,102,255,0.6)",
-                      },
-                    ],
-                  }}
-                />
-              </CardContent>
-            </Card>
-          </Grid>
-
           <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
