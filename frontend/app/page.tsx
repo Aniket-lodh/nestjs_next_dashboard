@@ -18,6 +18,7 @@ import {
   Legend,
 } from "chart.js";
 import TodaysSalesCard from "@/components/TodaysSalesCard";
+import VisitorInsightsChart from "../components/VisitorInsightsChart";
 
 ChartJS.register(
   CategoryScale,
@@ -45,46 +46,18 @@ export default function DashboardPage() {
     <>
       <TopBar />
       <Box sx={{ p: 3 }}>
-        {/* KPI Cards */}
-        {/* <Grid container spacing={2}>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Total Sales</Typography>
-                <Typography variant="h4">${metrics.totalSales}</Typography>
-                <Typography variant="body2">{metrics.changes.totalSalesPct} from yesterday</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Total Orders</Typography>
-                <Typography variant="h4">{metrics.totalOrders}</Typography>
-                <Typography variant="body2">{metrics.changes.totalOrdersPct} from yesterday</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Products Sold</Typography>
-                <Typography variant="h4">{metrics.productsSold}</Typography>
-                <Typography variant="body2">{metrics.changes.productsSoldPct} from yesterday</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">New Customers</Typography>
-                <Typography variant="h4">{metrics.newCustomers}</Typography>
-                <Typography variant="body2">{metrics.changes.newCustomersPct} from yesterday</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid> */}
-        <TodaysSalesCard />
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            flexWrap: "wrap",
+            alignItems: "stretch",
+          }}
+        >
+          <TodaysSalesCard />
+          <VisitorInsightsChart />
+        </Box>
+
         {/* Charts */}
         <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid size={{ xs: 12, md: 6 }}>
@@ -195,7 +168,7 @@ export default function DashboardPage() {
             </Card>
           </Grid>
         </Grid>
-      </Box>
+      </Box >
     </>
   );
 }

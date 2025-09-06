@@ -1,6 +1,5 @@
 import { Box, Card, CardContent, Typography, Button, Grid, Paper } from "@mui/material";
 import Image from "next/image";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 
 const kpiData = [
     {
@@ -42,12 +41,18 @@ export default function TodaysSalesCard() {
         <Card
             elevation={0}
             sx={{
-                borderRadius: "20px",
+                borderRadius: "20px !important",
                 boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
                 px: 4,
                 py: 3,
                 mb: 3,
+                overflow: "hidden",
+                flexGrow: 1,
+                flexBasis: 0,
+                minWidth: 800,
+                maxWidth: "70%",
             }}
+            id="todays-sales-card"
         >
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                 <Box>
