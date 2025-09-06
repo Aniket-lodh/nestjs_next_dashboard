@@ -29,7 +29,7 @@ export default function RootLayout({
           <CssBaseline />
           <Box sx={{ display: "flex" }}>
             <Sidebar />
-            <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
+            <Box component="main" sx={{ flexGrow: 1 }}>
               {children}
             </Box>
           </Box>
