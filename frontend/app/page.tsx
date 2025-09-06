@@ -29,6 +29,7 @@ ChartJS.register(
 );
 
 export default function DashboardPage() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { metrics, revenue, satisfaction, visitors, topProducts, loadAll } =
     useDashboardStore() as any;
 
