@@ -1,139 +1,213 @@
 "use client";
 
-import React from "react";
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import {
+    Box,
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Typography,
+    Button,
+    Drawer,
+    IconButton,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 
 const menuItems = [
-    { label: "Dashboard", icon: <Image src="dashboard_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: true },
-    { label: "Leaderboard", icon: <Image src="leaderboard_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Order", icon: <Image src="orders_ion.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Products", icon: <Image src="product_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Sales Report", icon: <Image src="sales_report_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Messages", icon: <Image src="messages_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Settings", icon: <Image src="settings_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
-    { label: "Sign Out", icon: <Image src="signout_icon.svg" alt="Dabang Logo" width={32} height={32} priority />, active: false },
+    { label: "Dashboard", icon: "dashboard_icon.svg", active: true },
+    { label: "Leaderboard", icon: "leaderboard_icon.svg", active: false },
+    { label: "Order", icon: "orders_ion.svg", active: false },
+    { label: "Products", icon: "product_icon.svg", active: false },
+    { label: "Sales Report", icon: "sales_report_icon.svg", active: false },
+    { label: "Messages", icon: "messages_icon.svg", active: false },
+    { label: "Settings", icon: "settings_icon.svg", active: false },
+    { label: "Sign Out", icon: "signout_icon.svg", active: false },
 ];
 
-export default function Sidebar() {
-    return (
+const SidebarContent = () => (
+    <Box
+        sx={{
+            width: { xs: "100%", sm: 280, md: 320, lg: 345 },
+            height: "100%",
+            bgcolor: "background.paper",
+            borderRadius: { sm: 3, xs: 0 },
+            boxShadow: { sm: 1, xs: "none" },
+            display: "flex",
+            flexDirection: "column",
+            pt: 6,
+        }}
+    >
+        {/* Brand Logo */}
         <Box
             sx={{
-                width: 345,
-                height: "100vh",
-                bgcolor: "background.paper",
-                borderRadius: 3,
-                boxShadow: 1,
-                display: "flex",
-                flexDirection: "column",
-                paddingTop: "50px",
-                justifyContent: "space-between",
-            }}
-        >
-            {/* Brand Logo */}
-            <Box sx={{
                 userSelect: "none",
                 cursor: "default",
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
-                paddingLeft: "43px",
-                gap: 3
-            }}>
-                <Box
+                px: 5,
+                gap: 3,
+            }}
+        >
+            <Box
+                sx={{
+                    bgcolor: "#5F56FF",
+                    width: 56,
+                    height: 56,
+                    borderRadius: 2,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <Image
+                    src="dummy_logo.svg"
+                    alt="Dabang Logo"
+                    width={25}
+                    height={25}
+                    priority
+                />
+            </Box>
+            <Typography
+                variant="h6"
+                component="span"
+                sx={{
+                    fontSize: "30px",
+                    fontWeight: 600,
+                    lineHeight: "150%",
+                    color: "text.heading",
+                }}
+            >
+                Dabang
+            </Typography>
+        </Box>
+
+        {/* Navigation Items */}
+        <List sx={{ flexGrow: 1, mt: 6, px: 5 }}>
+            {menuItems.map(({ label, icon, active }) => (
+                <ListItemButton
+                    key={label}
+                    selected={active}
                     sx={{
-                        bgcolor: "#5F56FF",
-                        width: 56,
-                        height: 56,
-                        borderRadius: 2,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: 24,
+                        borderRadius: active ? 4 : 0,
+                        bgcolor: active ? "#5D5FEF !important" : "transparent",
+                        color: active ? "primary.contrastText" : "text.primary",
+                        fontWeight: active ? "bold" : 400,
+                        fontSize: 18,
+                        lineHeight: "27px",
+                        py: 2,
+                        px: 3,
+                        mb: 1,
+                        boxShadow: active
+                            ? "0px 20px 50px 0px hsla(214, 23%, 28%, 0.1)"
+                            : "none",
                     }}
                 >
-                    <Image src="dummy_logo.svg" alt="Dabang Logo" width={25} height={25} priority />
-                </Box>
-                <Typography variant="h6" component="span" sx={{ fontSize: "30px", fontWeight: "600", lineHeight: "150%", color: "text.heading" }}>
-                    Dabang
-                </Typography>
-            </Box>
-
-            {/* Navigation Items */}
-            <List sx={{ flexGrow: 1, margin: "49px 0px 0px", padding: "0px 46px 0px" }}>
-                {menuItems.map(({ label, icon, active }) => (
-                    <ListItemButton
-                        key={label}
-                        selected={active}
+                    <ListItemIcon
                         sx={{
-                            borderRadius: active ? 4 : 0,
-                            bgcolor: active ? "#5D5FEF !important" : "transparent",
-                            color: active ? "primary.contrastText" : "text.primary",
-                            fontWeight: active ? "bold" : 400,
-                            fontSize: 18,
-                            lineHeight: "27px",
-                            opacity: 1,
-                            padding: "16px 24px",
-                            boxShadow: active ? "0px 20px 50px 0px hsla(214, 23%, 28%, 0.1)" : "none",
+                            minWidth: 40,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}
                     >
-                        <ListItemIcon
-                            sx={{
-                                minWidth: 40,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Box sx={{ width: 32, height: 32 }}>
-                                {icon}
-                            </Box>
-                        </ListItemIcon>
+                        <Box sx={{ width: 32, height: 32 }}>
+                            <Image
+                                src={icon}
+                                alt={label}
+                                width={32}
+                                height={32}
+                                style={{ width: "100%", height: "100%" }}
+                            />
+                        </Box>
+                    </ListItemIcon>
 
-                        <ListItemText primary={label} slotProps={{
+                    <ListItemText
+                        primary={label}
+                        slotProps={{
                             primary: {
                                 sx: {
-                                    marginLeft: 3,
+                                    ml: 3,
                                     fontWeight: active ? 600 : 400,
-                                    color: active ? "primary.contrastText" : "text.subheading",
+                                    color: active
+                                        ? "primary.contrastText"
+                                        : "text.subheading",
                                     fontSize: "18px",
                                     lineHeight: "100%",
                                 },
                             },
-                        }} />
-                    </ListItemButton>
-                ))}
-            </List>
+                        }}
+                    />
+                </ListItemButton>
+            ))}
+        </List>
 
-
-            {/* Dabang Pro Box */}
-            <Box
+        {/* Pro Box stays pinned at bottom */}
+        <Box
+            sx={{
+                bgcolor: "#5F56FF",
+                color: "white",
+                borderRadius: 3,
+                textAlign: "center",
+                backgroundImage: 'url("/bg-pattern.svg")',
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                p: 4,
+                mx: 3,
+                mb: 3,
+            }}
+        >
+            <Typography variant="h6" mb={1}>
+                Dabang Pro
+            </Typography>
+            <Typography variant="body2" mb={2}>
+                Get access to all features on tetumbas
+            </Typography>
+            <Button
+                variant="contained"
                 sx={{
-                    bgcolor: "#5F56FF",
-                    color: "white",
-                    borderRadius: 3,
-                    textAlign: "center",
-                    backgroundImage: 'url("/bg-pattern.svg")',
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    p: 4,
-                    mx: 3, // horizontal spacing
-                    mb: 3, // bottom spacing
+                    bgcolor: "white",
+                    color: "#5F56FF",
+                    fontWeight: "bold",
+                    "&:hover": { bgcolor: "#f5f5f5" },
                 }}
             >
-                <Typography variant="h6" mb={1}>
-                    Dabang Pro
-                </Typography>
-                <Typography variant="body2" mb={2}>
-                    Get access to all features on tetumbas
-                </Typography>
-                <Button variant="contained" sx={{ bgcolor: "white", color: "#5F56FF", fontWeight: "bold" }}>
-                    Get Pro
-                </Button>
-            </Box>
+                Get Pro
+            </Button>
         </Box>
+  </Box >
+);
+
+export default function Sidebar() {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <>
+            {/* Mobile Menu Button */}
+            <IconButton
+                sx={{ display: { xs: "block", sm: "none" }, position: "absolute", top: 16, left: 16 }}
+                onClick={() => setOpen(true)}
+            >
+                <MenuIcon />
+            </IconButton>
+
+            {/* Permanent Sidebar for Desktop */}
+            <Box sx={{ display: { xs: "none", sm: "flex" }, height: "100vh" }}>
+                <SidebarContent />
+            </Box>
+
+            {/* Drawer for Mobile */}
+            <Drawer
+                anchor="left"
+                open={open}
+                onClose={() => setOpen(false)}
+                sx={{ display: { xs: "block", sm: "none" } }}
+            >
+                <SidebarContent />
+            </Drawer>
+        </>
     );
 }
