@@ -1,8 +1,17 @@
 @import "tailwindcss";
-
+/* 
 :root {
-  --background: #ffffff;
+  --background: hsla(210, 25%, 98%, 1);
+  --main-background: hsla(0, 0%, 100%, 1);
   --foreground: #171717;
+  --font-color-heading: hsla(231, 55%, 18%, 1);
+  --font-color-subheading: hsla(232, 12%, 51%, 1);
+  --font-color-card-heading: hsla(244, 100%, 15%, 1);
+  --font-color-card-tertiary-heading: hsla(208, 71%, 20%, 1);
+  --font-color-heading-country-dropdown: hsla(214, 23%, 28%, 1);
+  --font-color-heading-country-dropdown-text:hsla(262, 12%, 64%, 1);
+  --font-color-card-chart-y: hsla(215, 25%, 59%, 1);
+  --font-color-card-chart-x: hsla(221, 15%, 32%, 1);
 }
 
 @theme inline {
@@ -17,10 +26,8 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+/* body {
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
