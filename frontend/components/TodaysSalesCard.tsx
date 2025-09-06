@@ -51,6 +51,10 @@ export default function TodaysSalesCard() {
                 flexBasis: 0,
                 minWidth: 800,
                 maxWidth: "70%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: 4,
             }}
             id="todays-sales-card"
         >
@@ -89,7 +93,7 @@ export default function TodaysSalesCard() {
                     Export
                 </Button>
             </Box>
-            <Grid container spacing={3} mt={1}>
+            <Grid container spacing={3} mt={1} mb={3}>
                 {kpiData.map((kpi) => (
                     <Grid size={{ xs: 12, md: 3, sm: 6 }} key={kpi.label}>
                         <Paper
