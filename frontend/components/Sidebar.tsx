@@ -30,16 +30,15 @@ const SidebarContent = () => (
     <Box
         sx={{
             width: { xs: "100%", sm: 280, md: 320, lg: 345 },
-            height: "100%",
+            minHeight: "100%",
+            height: "fit-content",
             bgcolor: "background.paper",
-            borderRadius: { sm: 3, xs: 0 },
-            boxShadow: { sm: 1, xs: "none" },
             display: "flex",
             flexDirection: "column",
             pt: 6,
+            justifyContent: "space-between"
         }}
     >
-        {/* Brand Logo */}
         <Box
             sx={{
                 userSelect: "none",
@@ -84,7 +83,6 @@ const SidebarContent = () => (
             </Typography>
         </Box>
 
-        {/* Navigation Items */}
         <List sx={{ flexGrow: 1, mt: 6, px: 5 }}>
             {menuItems.map(({ label, icon, active }) => (
                 <ListItemButton
@@ -144,7 +142,6 @@ const SidebarContent = () => (
             ))}
         </List>
 
-        {/* Pro Box stays pinned at bottom */}
         <Box
             sx={{
                 bgcolor: "#5F56FF",
@@ -156,8 +153,10 @@ const SidebarContent = () => (
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 p: 4,
+                mt: 2,
                 mx: 3,
                 mb: 3,
+                flexShrink: 0,
             }}
         >
             <Typography variant="h6" mb={1}>
@@ -178,7 +177,7 @@ const SidebarContent = () => (
                 Get Pro
             </Button>
         </Box>
-  </Box >
+    </Box >
 );
 
 export default function Sidebar() {
@@ -186,7 +185,6 @@ export default function Sidebar() {
 
     return (
         <>
-            {/* Mobile Menu Button */}
             <IconButton
                 sx={{ display: { xs: "block", sm: "none" }, position: "absolute", top: 16, left: 16 }}
                 onClick={() => setOpen(true)}
@@ -194,12 +192,10 @@ export default function Sidebar() {
                 <MenuIcon />
             </IconButton>
 
-            {/* Permanent Sidebar for Desktop */}
             <Box sx={{ display: { xs: "none", sm: "flex" }, height: "100vh" }}>
                 <SidebarContent />
             </Box>
 
-            {/* Drawer for Mobile */}
             <Drawer
                 anchor="left"
                 open={open}
