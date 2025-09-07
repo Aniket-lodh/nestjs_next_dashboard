@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 import { useDashboardStore } from "../store/dashboard";
 import TopBar from "../components/TopBar";
-import { Box, Card, CardContent, Typography, LinearProgress } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Bar, Line } from "react-chartjs-2";
+import { Box} from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -48,7 +46,7 @@ export default function DashboardPage() {
 
   if (!metrics) return <p>Loading...</p>;
 
-  return (  
+  return (
     <>
       <TopBar />
       <Box sx={{ p: 3 }}>
@@ -56,8 +54,11 @@ export default function DashboardPage() {
           sx={{
             display: "flex",
             gap: 3,
+            flexDirection: { xs: "column", md: "row" },
             flexWrap: "wrap",
-            alignItems: "stretch",
+            alignItems: { md: "stretch" },
+            height: "fit-content",
+            maxWidth: "100%",
           }}
         >
           <TodaysSalesCard />

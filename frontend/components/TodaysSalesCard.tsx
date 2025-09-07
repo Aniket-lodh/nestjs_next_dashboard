@@ -47,11 +47,13 @@ export default function TodaysSalesCard() {
                 py: 3,
                 mb: 3,
                 overflow: "hidden",
-                flexGrow: 1,
-                flexBasis: 0,
-                minWidth: 650,
-                maxWidth: "70%",
+                flexGrow: { md: 1 },
+                flexBasis: { md: 0 },
+                width: { xs: "100%", md: "auto" },
+                minWidth: { md: 400 },
+                maxWidth: { xs: "100%", md: "70%" },
                 display: "flex",
+                flexWrap: "wrap",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 gap: 4,
@@ -94,13 +96,13 @@ export default function TodaysSalesCard() {
                 </Button>
             </Box>
             <Box sx={{
-                "display": "flex",
-                "alignItems": "center",
-                "justifyContent": "center",
-                "gap": 3,
-                "mb": 3,
-                "width": "100%",
-                "flexWrap": "wrap",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 3,
+                mb: 3,
+                width: "100%",
+                flexWrap: "wrap",
             }}>
                 {kpiData.map((kpi) => (
                     <Paper
