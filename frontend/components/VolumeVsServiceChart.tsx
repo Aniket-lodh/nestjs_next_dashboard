@@ -86,7 +86,7 @@ export default function VolumeVsServiceChart() {
                 boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
                 flexGrow: 1,
                 flexBasis: 0,
-                minWidth: 320,
+                minWidth: 300,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",

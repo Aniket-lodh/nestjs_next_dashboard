@@ -53,8 +53,7 @@ export default function TopProductsTable() {
                 mb: 3,
                 flexGrow: 1,
                 flexBasis: 0,
-                minWidth: 300,
-                maxWidth: 650,
+                minWidth: 500,
             }}
         >
             <Typography
