@@ -60,7 +60,7 @@ export default function DashboardPage() {
             height: "fit-content",
             maxWidth: "100%",
           }}
-        >
+        > 
           <TodaysSalesCard metrics={metrics} />
           <VisitorInsightsChart visitorInsights={visitors} />
         </Box>
