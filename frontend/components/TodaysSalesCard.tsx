@@ -49,7 +49,7 @@ export default function TodaysSalesCard() {
                 overflow: "hidden",
                 flexGrow: 1,
                 flexBasis: 0,
-                minWidth: 800,
+                minWidth: 400,
                 maxWidth: "70%",
                 display: "flex",
                 flexDirection: "column",

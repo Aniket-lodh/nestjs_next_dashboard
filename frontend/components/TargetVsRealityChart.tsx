@@ -51,12 +51,16 @@ const options = {
     scales: {
         x: {
             grid: { display: false, drawBorder: false },
-            ticks: { display: false },
+            ticks: {
+                color: "#2A3356",
+                font: { family: "Poppins", size: 12, weight: 400 },
+            },
         },
         y: {
             grid: { display: false, drawBorder: false },
             ticks: { display: false },
             beginAtZero: true,
+            display: false,
         },
     },
 };
@@ -137,7 +141,7 @@ export default function TargetVsRealityChart() {
                                 fontWeight: 600,
                                 fontFamily: "'Poppins', sans-serif",
                                 color: "text.heading",
-                                fontSize: 12,
+                                fontSize: 14,
                                 lineHeight: "16px",
                             }}
                         >
@@ -148,13 +152,13 @@ export default function TargetVsRealityChart() {
                                 fontWeight: 400,
                                 fontFamily: "'Poppins', sans-serif",
                                 color: "#737791",
-                                fontSize: "10px",
+                                fontSize: "12px",
                             }}
                         >
                             Global
                         </Typography>
                     </Box>
-                    <Box sx={{ ml: "auto" }}>
+                    <Box sx={{ ml: "1.5rem" }}>
                         <Typography
                             sx={{
                                 fontWeight: 500,
@@ -199,7 +203,7 @@ export default function TargetVsRealityChart() {
                                 fontWeight: 600,
                                 fontFamily: "'Poppins', sans-serif",
                                 color: "text.heading",
-                                fontSize: 12,
+                                fontSize: 14,
                                 lineHeight: "16px",
                             }}
                         >
@@ -210,13 +214,13 @@ export default function TargetVsRealityChart() {
                                 fontWeight: 400,
                                 fontFamily: "'Poppins', sans-serif",
                                 color: "#737791",
-                                fontSize: "10px",
+                                fontSize: "12px",
                             }}
                         >
                             Commercial
                         </Typography>
                     </Box>
-                    <Box sx={{ ml: "auto" }}>
+                    <Box sx={{ ml: "1.5rem" }}>
                         <Typography
                             sx={{
                                 fontWeight: 500,
@@ -230,125 +234,6 @@ export default function TargetVsRealityChart() {
                     </Box>
                 </Box>
             </Box>
-
-            {/* 
-            <Box
-                sx={{
-                    bgcolor: "transparent",
-                    borderRadius: 8,
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    px: 1,
-                    pt: 1,
-                }}
-            >
-
-                <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        bgcolor: "#E6FFF4",
-                        borderRadius: 2,
-                        px: 2,
-                        py: 1,
-                        gap: 1,
-                        minWidth: "120px",
-                    }}
-                >
-                    <Box sx={{ bgcolor: "#CFF7E3", borderRadius: "50%", p: 0.5 }}>
-                        <Image src="reality_sales.svg" alt="reality" width={18} height={18} />
-                    </Box>
-                    <Box>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                color: "#1B254B",
-                                fontWeight: 500,
-                                fontFamily: "'Poppins', sans-serif",
-                                fontSize: 16,
-                                mb: 0.2,
-                            }}
-                        >
-                            Reality Sales
-                        </Typography>
-                        <Typography
-                            variant="caption"
-                            sx={{
-                                color: "#8898AA",
-                                fontFamily: "'Poppins', sans-serif",
-                                fontSize: 12,
-                            }}
-                        >
-                            Global
-                        </Typography>
-                    </Box>
-                    <Typography
-                        sx={{
-                            color: "#5DE0A8",
-                            fontWeight: 700,
-                            fontFamily: "'Poppins', sans-serif",
-                            fontSize: 18,
-                            ml: 2,
-                        }}
-                    >
-                        8.823
-                    </Typography>
-                </Box>
-
-                <Box
-                    sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        bgcolor: "#FFFCE4",
-                        borderRadius: 2,
-                        px: 2,
-                        py: 1,
-                        gap: 1,
-                        minWidth: "120px",
-                    }}
-                >
-                    <Box sx={{ bgcolor: "#FFF3BC", borderRadius: "50%", p: 0.5 }}>
-                        <Image src="target_sales.svg" alt="target" width={18} height={18} />
-                    </Box>
-                    <Box>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                color: "#1B254B",
-                                fontWeight: 500,
-                                fontFamily: "'Poppins', sans-serif",
-                                fontSize: 16,
-                                mb: 0.2,
-                            }}
-                        >
-                            Target Sales
-                        </Typography>
-                        <Typography
-                            variant="caption"
-                            sx={{
-                                color: "#8898AA",
-                                fontFamily: "'Poppins', sans-serif",
-                                fontSize: 12,
-                            }}
-                        >
-                            Commercial
-                        </Typography>
-                    </Box>
-                    <Typography
-                        sx={{
-                            color: "#FFD81B",
-                            fontWeight: 700,
-                            fontFamily: "'Poppins', sans-serif",
-                            fontSize: 18,
-                            ml: 2,
-                        }}
-                    >
-                        12.122
-                    </Typography>
-                </Box>
-            </Box> */}
         </Card>
     );
 }

@@ -60,10 +60,8 @@ const options = {
     },
     scales: {
         x: {
-            grid: { display: false },
-            ticks: {
-                display: false,
-            },
+            grid: { display: false, drawBorder: false, lineWidth: 2 },
+            display: false,
         },
         y: {
             grid: { color: "#F0F0F7", drawBorder: false, lineWidth: 2 },

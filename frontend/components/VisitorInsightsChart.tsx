@@ -111,9 +111,9 @@ function VisitorInsightsChart() {
                 mb: 3,
                 boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
                 flexShrink: 0,
-                minWidth: 280,
+                minWidth: 180,
+                maxWidth: 500,
                 overflow: "hidden",
-
             }}
         >
             <Typography
@@ -123,7 +123,7 @@ function VisitorInsightsChart() {
                 Visitor Insights
             </Typography>
 
-            <Box sx={{ minHeight: 200, height: "fit-content", width: "100%" }}>
+            <Box sx={{ height: "stretch", width: "100%" }}>
                 <Line
                     data={data}
                     options={{
