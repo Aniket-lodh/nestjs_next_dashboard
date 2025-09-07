@@ -19,7 +19,6 @@ interface TodaysSalesCardProps {
 export default function TodaysSalesCard({ metrics }: TodaysSalesCardProps) {
     if (!metrics) return <p>Loading...</p>;
 
-    console.log("Metrics in TodaysSalesCard:", metrics);
     const kpiData = [
         {
             icon: "total_sales.svg",
