@@ -99,7 +99,6 @@ export default function TotalRevenueChart() {
         mb: 3,
         overflow: "hidden",
         boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
-        height: { xs: 370, sm: 420, md: 440 },
         flexGrow: 1,
         flexBasis: 0,
         minWidth: 300,

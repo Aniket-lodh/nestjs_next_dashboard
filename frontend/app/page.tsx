@@ -21,6 +21,7 @@ import TodaysSalesCard from "@/components/TodaysSalesCard";
 import VisitorInsightsChart from "../components/VisitorInsightsChart";
 import TotalRevenueChart from "@/components/TotalRevenueChart";
 import CustomerSatisfactionChart from "@/components/CustomerSatisfactionChart";
+import TargetVsRealityChart from "@/components/TargetVsRealityChart";
 
 ChartJS.register(
   CategoryScale,
@@ -70,6 +71,7 @@ export default function DashboardPage() {
         >
           <TotalRevenueChart />
           <CustomerSatisfactionChart />
+          <TargetVsRealityChart />
         </Box>
 
         {/* Visitors & Products */}
