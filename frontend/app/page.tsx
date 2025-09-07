@@ -24,6 +24,7 @@ import CustomerSatisfactionChart from "@/components/CustomerSatisfactionChart";
 import TargetVsRealityChart from "@/components/TargetVsRealityChart";
 import TopProductsTable from "@/components/TopProductsTable";
 import CountrySalesMap from "@/components/CountrySalesMap";
+import VolumeVsServiceChart from "@/components/VolumeVsServiceChart";
 
 ChartJS.register(
   CategoryScale,
@@ -83,63 +84,9 @@ export default function DashboardPage() {
         }}>
           <TopProductsTable />
           <CountrySalesMap />
+          <VolumeVsServiceChart />
         </Box>
 
-        {/* Visitors & Products */}
-        <Grid container spacing={2} sx={{ mt: 2 }}>
-          {/* <Grid size={{ xs: 12, md: 6 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Visitor Insights</Typography>
-                <Line
-                  data={{
-                    labels: visitors.labels,
-                    datasets: [
-                      {
-                        label: "Loyal",
-                        data: visitors.loyal,
-                        borderColor: "green",
-                        fill: false,
-                      },
-                      {
-                        label: "New",
-                        data: visitors.new,
-                        borderColor: "red",
-                        fill: false,
-                      },
-                      {
-                        label: "Unique",
-                        data: visitors.unique,
-                        borderColor: "purple",
-                        fill: false,
-                      },
-                    ],
-                  }}
-                />
-              </CardContent>
-            </Card>
-          </Grid> */}
-
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">Top Products</Typography>
-                {topProducts.map((p: any) => (
-                  <Box key={p.rank} sx={{ mb: 2 }}>
-                    <Typography variant="body1">
-                      {p.rank}. {p.name}
-                    </Typography>
-                    <LinearProgress
-                      variant="determinate"
-                      value={p.popularity}
-                      sx={{ height: 8, borderRadius: 5 }}
-                    />
-                  </Box>
-                ))}
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
       </Box >
     </>
   );

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -15,14 +15,16 @@ const HIGHLIGHT_COUNTRY_COLORS: any = {
 
 export default function CountrySalesMap() {
     return (
-        <Box
+        <Card
             sx={{
-                bgcolor: "background.paper",
-                borderRadius: "24px",
-                p: { xs: 2, md: 4 },
+                borderRadius: "20px !important",
+                px: 4,
+                py: 3,
+                mb: 3,
+                overflow: "hidden",
                 boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
-                width: "100%",
-                maxWidth: 440,
+                flexGrow: 1,
+                flexBasis: 0,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -75,6 +77,6 @@ export default function CountrySalesMap() {
                     </Geographies>
                 </ComposableMap>
             </Box>
-        </Box>
+        </Card>
     );
 }
