@@ -14,23 +14,22 @@ export default function TopBar() {
                 alignItems: "center",
                 justifyContent: "space-between",
                 py: 3,
-                px: 6,
+                px: 3,
             }}
         >
-            {/* Left: Dashboard Title */}
             <Typography
                 variant="h4"
                 sx={{
-                    fontWeight: 700,
-                    color: "text.heading", // from theme
+                    fontWeight: 600,
+                    color: "text.heading",
                     letterSpacing: 0,
                     fontFamily: "'Poppins', sans-serif",
+                    fontSize: "24px"
                 }}
             >
                 Dashboard
             </Typography>
 
-            {/* Center: Search Bar */}
             <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
                 <Paper
                     component="form"
@@ -43,7 +42,10 @@ export default function TopBar() {
                         borderRadius: 3,
                         px: 2,
                         py: 1,
-                        width: 300,
+                        flexGrow: 1,
+                        minWidth: 300,
+                        maxWidth: 450,
+                        mx: 3,
                         height: 48,
                     }}
                 >
@@ -61,12 +63,10 @@ export default function TopBar() {
                 </Paper>
             </Box>
 
-            {/* Right: Language, Notification, Avatar, Name */}
             <Stack direction="row" alignItems="center" spacing={4}>
-                {/* Language Dropdown */}
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <Image
-                        src="united_flag.svg" // Add US flag SVG to your /public/flags directory
+                        src="united_flag.svg"
                         width={24}
                         height={24}
                         alt="EN"
@@ -74,13 +74,12 @@ export default function TopBar() {
                     />
                     <Typography
                         variant="body1"
-                        sx={{ fontWeight: 500, color: "text.heading", fontSize: 16, fontFamily: "'Poppins', sans-serif" }}
+                        sx={{ fontWeight: 600, color: "#374557", fontSize: "14px", fontFamily: "'Poppins', sans-serif" }}
                     >
                         Eng (US)
                     </Typography>
-                    <KeyboardArrowDownIcon sx={{ color: "#373F50" }} />
+                    <KeyboardArrowDownIcon sx={{ color: "#374557", fontSize: "16px" }} />
                 </Stack>
-                {/* Notification */}
                 <Box
                     sx={{
                         bgcolor: "#FFF8E1",
@@ -107,30 +106,32 @@ export default function TopBar() {
                         }}
                     />
                 </Box>
-                {/* User */}
-                <Stack direction="row" alignItems="center" spacing={2}>
+                <Stack direction="row" alignItems="center" spacing={1}>
                     <Avatar
                         src="user_avatar.png"
                         sx={{ width: 48, height: 48, borderRadius: 2 }}
                         alt="Musfiq"
                     />
                     <Box>
-                        <Typography
-                            variant="body1"
-                            sx={{ fontWeight: 600, color: "text.heading", fontFamily: "'Poppins', sans-serif" }}
-                        >
-                            Musfiq
-                        </Typography>
+                        <Box flexDirection="row" display="flex" alignItems="center" gap={1} mb={0} pb={0}>
+                            <Typography
+                                variant="body1"
+                                sx={{ fontWeight: 500, color: "#151D48", fontFamily: "'Poppins', sans-serif" }}
+                            >
+                                Musfiq
+                            </Typography>
+                            <KeyboardArrowDownIcon sx={{ color: "#151D48", fontSize: "16px" }} />
+                        </Box>
                         <Typography
                             variant="caption"
-                            sx={{ fontWeight: 500, color: "text.subheading", fontFamily: "'Poppins', sans-serif" }}
+                            sx={{ fontWeight: 400, color: "#737791", fontFamily: "'Poppins', sans-serif", pt: 0, mt:0 }}
                         >
                             Admin
                         </Typography>
                     </Box>
-                    <KeyboardArrowDownIcon sx={{ color: "#373F50" }} />
+
                 </Stack>
             </Stack>
-        </Box>
+        </Box >
     );
 }

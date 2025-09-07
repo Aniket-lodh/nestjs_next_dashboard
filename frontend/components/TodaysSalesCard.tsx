@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography, Button, Grid, Paper } from "@mui/material";
+import { Box, Card, Typography, Button, Paper } from "@mui/material";
 import Image from "next/image";
 
 const kpiData = [
