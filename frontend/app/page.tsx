@@ -22,6 +22,8 @@ import VisitorInsightsChart from "../components/VisitorInsightsChart";
 import TotalRevenueChart from "@/components/TotalRevenueChart";
 import CustomerSatisfactionChart from "@/components/CustomerSatisfactionChart";
 import TargetVsRealityChart from "@/components/TargetVsRealityChart";
+import TopProductsTable from "@/components/TopProductsTable";
+import CountrySalesMap from "@/components/CountrySalesMap";
 
 ChartJS.register(
   CategoryScale,
@@ -73,10 +75,19 @@ export default function DashboardPage() {
           <CustomerSatisfactionChart />
           <TargetVsRealityChart />
         </Box>
+        <Box sx={{
+          display: "flex",
+          gap: 3,
+          flexWrap: "wrap",
+          alignItems: "stretch",
+        }}>
+          <TopProductsTable />
+          <CountrySalesMap />
+        </Box>
 
         {/* Visitors & Products */}
         <Grid container spacing={2} sx={{ mt: 2 }}>
-          <Grid size={{ xs: 12, md: 6 }}>
+          {/* <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Typography variant="h6">Visitor Insights</Typography>
@@ -107,7 +118,7 @@ export default function DashboardPage() {
                 />
               </CardContent>
             </Card>
-          </Grid>
+          </Grid> */}
 
           <Grid size={{ xs: 12, md: 6 }}>
             <Card>
