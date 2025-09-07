@@ -1,5 +1,5 @@
 import { Box, Card, Typography } from "@mui/material";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -33,44 +33,43 @@ export default function CountrySalesMap() {
             <Typography
                 variant="h6"
                 sx={{
-                    fontWeight: 700,
-                    mb: 1,
+                    fontWeight: 600,
                     fontFamily: "'Poppins', sans-serif",
                     color: "text.heading",
-                    fontSize: { xs: "20px", md: "24px" },
+                    fontSize: "20px",
                     alignSelf: "flex-start",
                 }}
             >
                 Sales Mapping by Country
             </Typography>
-            <Box sx={{ width: '100%', minHeight: 280, height: 'stretch' }}>
+            <Box sx={{ width: "100%", minHeight: 280, height: "stretch", mt: 1 }}>
                 <ComposableMap
                     projection="geoMercator"
-                    width={800}
-                    height={400}
                     style={{ width: "100%", height: "100%" }}
                 >
-                    <Geographies geography={geoUrl}>
-                        {({ geographies }) =>
-                            geographies.map(geo => {
-                                const countryName = geo.properties["name"];
-                                const color = HIGHLIGHT_COUNTRIES[countryName] || "#EEEEEE";
-                                return (
-                                    <Geography
-                                        key={geo.rsmKey}
-                                        geography={geo}
-                                        fill={color}
-                                        stroke="#fff"
-                                        style={{
-                                            default: { outline: "none" },
-                                            hover: { fill: "#FFC107", outline: "none" },
-                                            pressed: { outline: "none" },
-                                        }}
-                                    />
-                                );
-                            })
-                        }
-                    </Geographies>
+                    <ZoomableGroup zoom={1.2}>
+                        <Geographies geography={geoUrl}>
+                            {({ geographies }) =>
+                                geographies.map((geo) => {
+                                    const countryName = geo.properties["name"];
+                                    const color = HIGHLIGHT_COUNTRIES[countryName] || "#EEEEEE";
+                                    return (
+                                        <Geography
+                                            key={geo.rsmKey}
+                                            geography={geo}
+                                            fill={color}
+                                            stroke="#fff"
+                                            style={{
+                                                default: { outline: "none" },
+                                                hover: { outline: "none" },
+                                                pressed: { outline: "none" },
+                                            }}
+                                        />
+                                    );
+                                })
+                            }
+                        </Geographies>
+                    </ZoomableGroup>
                 </ComposableMap>
             </Box>
         </Card>

@@ -27,7 +27,7 @@ const data = {
             backgroundColor: serviceColor,
             barPercentage: 0.55,
             categoryPercentage: 0.55,
-            borderRadius: 8,
+            borderRadius: 2.5,
             stack: 'Stack 0',
             order: 1,
         },
@@ -37,7 +37,7 @@ const data = {
             backgroundColor: volumeColor,
             barPercentage: 0.55,
             categoryPercentage: 0.55,
-            borderRadius: 8,
+            borderRadius: 2.5,
             stack: 'Stack 0',
             order: 2,
         },
@@ -79,7 +79,6 @@ export default function VolumeVsServiceChart() {
         <Card
             sx={{
                 borderRadius: "20px !important",
-                px: 4,
                 py: 3,
                 mb: 3,
                 overflow: "hidden",
@@ -95,52 +94,54 @@ export default function VolumeVsServiceChart() {
             <Typography
                 variant="h6"
                 sx={{
-                    fontWeight: 700,
-                    mb: 2,
+                    fontWeight: 600,
                     fontFamily: "'Poppins', sans-serif",
                     color: "text.heading",
-                    fontSize: { xs: "20px", md: "22px" },
+                    fontSize: "20px",
+                    px: 4,
                     alignSelf: "flex-start",
                 }}
             >
                 Volume vs Service Level
             </Typography>
 
-            <Box sx={{ width: "100%", height: 'stretch', mb: 2 }}>
+            <Box sx={{
+                width: "100%", height: 'stretch',
+                px: 4
+            }}>
                 <Bar data={data} options={options} height={140} width={"100%"} />
             </Box>
 
-            <Divider sx={{ width: "100%", mb: 2 }} />
+            <Divider sx={{ width: "100%", my: 2 }} />
 
             <Box
                 sx={{
                     width: "100%",
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "center",
                     alignItems: "center",
-                    pb: 1,
                 }}
             >
-                <Box display="flex" flexDirection="column" alignItems="center">
-                    <Box display="flex" alignItems="center" mb={0.5}>
-                        <Box sx={{ width: 16, height: 8, bgcolor: volumeColor, borderRadius: 2, mr: 1 }} />
-                        <Typography sx={{ color: "#A0A3BD", fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: 17 }}>
+                <Box display="flex" flexDirection="column" alignItems="center" mr={2}>
+                    <Box display="flex" alignItems="center">
+                        <Box sx={{ width: 8, height: 8, bgcolor: volumeColor, borderRadius: 2, mr: 1 }} />
+                        <Typography sx={{ color: "#96A5B8", fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: 16 }}>
                             Volume
                         </Typography>
                     </Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: 21, fontFamily: "'Poppins', sans-serif", color: "text.heading" }}>
+                    <Typography sx={{ fontWeight: 500, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: "#222B45" }}>
                         1,135
                     </Typography>
                 </Box>
                 <Divider orientation="vertical" flexItem sx={{ mx: 2, height: 32, bgcolor: "#E5E8EF" }} />
-                <Box display="flex" flexDirection="column" alignItems="center">
-                    <Box display="flex" alignItems="center" mb={0.5}>
-                        <Box sx={{ width: 16, height: 8, bgcolor: serviceColor, borderRadius: 2, mr: 1 }} />
-                        <Typography sx={{ color: "#A0A3BD", fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: 17 }}>
+                <Box display="flex" flexDirection="column" alignItems="center" ml={2}>
+                    <Box display="flex" alignItems="center">
+                        <Box sx={{ width: 8, height: 8, bgcolor: serviceColor, borderRadius: 2, mr: 1 }} />
+                        <Typography sx={{ color: "#96A5B8", fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: 16 }}>
                             Services
                         </Typography>
                     </Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: 21, fontFamily: "'Poppins', sans-serif", color: "text.heading" }}>
+                    <Typography sx={{ fontWeight: 500, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: "#222B45" }}>
                         635
                     </Typography>
                 </Box>
