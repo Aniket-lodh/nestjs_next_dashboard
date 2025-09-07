@@ -1,42 +1,60 @@
 import { Box, Card, Typography, Button, Paper } from "@mui/material";
 import Image from "next/image";
 
-const kpiData = [
-    {
-        icon: "total_sales.svg",
-        value: "$1k",
-        label: "Total Sales",
-        change: "+8% from yesterday",
-        cardBg: "#FFE4EA",
-        changeColor: "hsla(220, 83%, 59%, 1)",
-    },
-    {
-        icon: "total_orders.svg",
-        value: "300",
-        label: "Total Order",
-        change: "+5% from yesterday",
-        cardBg: "#FFF4D5",
-        changeColor: "hsla(220, 83%, 59%, 1)",
-    },
-    {
-        icon: "productsold_icon.svg",
-        value: "5",
-        label: "Product Sold",
-        change: "+1,2% from yesterday",
-        cardBg: "#E3FFED",
-        changeColor: "hsla(220, 83%, 59%, 1)",
-    },
-    {
-        icon: "new_customers_icon.svg",
-        value: "8",
-        label: "New Customers",
-        change: "0,5% from yesterday",
-        cardBg: "#F3EFFF",
-        changeColor: "hsla(220, 83%, 59%, 1)",
-    },
-];
+interface TodaysSalesCardProps {
+    metrics: {
+        totalSales: number;
+        totalOrders: number;
+        productsSold: number;
+        newCustomers: number;
+        changes: {
+            totalSalesPct: string;
+            totalOrdersPct: string;
+            productsSoldPct: string;
+            newCustomersPct: string;
+        };
+    };
+}
 
-export default function TodaysSalesCard() {
+export default function TodaysSalesCard({ metrics }: TodaysSalesCardProps) {
+    if (!metrics) return <p>Loading...</p>;
+
+    console.log("Metrics in TodaysSalesCard:", metrics);
+    const kpiData = [
+        {
+            icon: "total_sales.svg",
+            value: `$${metrics.totalSales}`,
+            label: "Total Sales",
+            change: `${metrics.changes.totalSalesPct} from yesterday`,
+            cardBg: "#FFE4EA",
+            changeColor: "hsla(220, 83%, 59%, 1)",
+        },
+        {
+            icon: "total_orders.svg",
+            value: `${metrics.totalOrders}`,
+            label: "Total Order",
+            change: `${metrics.changes.totalOrdersPct} from yesterday`,
+            cardBg: "#FFF4D5",
+            changeColor: "hsla(220, 83%, 59%, 1)",
+        },
+        {
+            icon: "productsold_icon.svg",
+            value: `${metrics.productsSold}`,
+            label: "Product Sold",
+            change: `${metrics.changes.productsSoldPct} from yesterday`,
+            cardBg: "#E3FFED",
+            changeColor: "hsla(220, 83%, 59%, 1)",
+        },
+        {
+            icon: "new_customers_icon.svg",
+            value: `${metrics.newCustomers}`,
+            label: "New Customers",
+            change: `${metrics.changes.newCustomersPct} from yesterday`,
+            cardBg: "#F3EFFF",
+            changeColor: "hsla(220, 83%, 59%, 1)",
+        },
+    ];
+
     return (
         <Card
             elevation={0}
@@ -89,21 +107,23 @@ export default function TodaysSalesCard() {
                         fontWeight: 500,
                         fontFamily: "'Poppins', sans-serif",
                         color: "hsla(208, 71%, 20%, 1)",
-                        borderColor: "hsla(209, 35%, 83%, 1)"
+                        borderColor: "hsla(209, 35%, 83%, 1)",
                     }}
                 >
                     Export
                 </Button>
             </Box>
-            <Box sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 3,
-                mb: 3,
-                width: "100%",
-                flexWrap: "wrap",
-            }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 3,
+                    mb: 3,
+                    width: "100%",
+                    flexWrap: "wrap",
+                }}
+            >
                 {kpiData.map((kpi) => (
                     <Paper
                         elevation={0}
@@ -116,7 +136,7 @@ export default function TodaysSalesCard() {
                             flexDirection: "column",
                             alignItems: "flex-start",
                             height: "fit-content",
-                            flexGrow: 1
+                            flexGrow: 1,
                         }}
                     >
                         <Box

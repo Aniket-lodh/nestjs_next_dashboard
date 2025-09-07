@@ -10,69 +10,75 @@ import {
 } from "chart.js";
 
 ChartJS.register(LinearScale, CategoryScale, BarElement, Tooltip, Filler);
-
-const labels = ["", "", "", "", "", "", ""];
-const volumeData = [400, 520, 580, 490, 300, 350, 410];
-const servicesData = [310, 420, 400, 320, 260, 300, 280];
-
+interface VolumeVsServiceData {
+    labels: string[];
+    volumeData: number[];
+    servicesData: number[];
+    volumeTotal: number;
+    servicesTotal: number;
+}
 const volumeColor = "#1890FF";
 const serviceColor = "#35E2B4";
 
-const data = {
-    labels,
-    datasets: [
-        {
-            label: "Services",
-            data: servicesData,
-            backgroundColor: serviceColor,
-            barPercentage: 0.55,
-            categoryPercentage: 0.55,
-            borderRadius: 2.5,
-            stack: 'Stack 0',
-            order: 1,
-        },
-        {
-            label: "Volume",
-            data: volumeData,
-            backgroundColor: volumeColor,
-            barPercentage: 0.55,
-            categoryPercentage: 0.55,
-            borderRadius: 2.5,
-            stack: 'Stack 0',
-            order: 2,
-        },
-    ],
-};
+export default function VolumeVsServiceChart({ volumeVsService }: { volumeVsService: VolumeVsServiceData }) {
+    if (!volumeVsService) return <p>Loading...</p>;
 
-const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: { display: false },
-        tooltip: {
-            enabled: true,
-            titleFont: { family: "Poppins", weight: 500 },
-            bodyFont: { family: "Poppins", weight: 400 },
-            callbacks: {
-                label: (context: any) => `${context.dataset.label}: ${context.parsed.y}`,
+    const { labels, volumeData, servicesData, volumeTotal, servicesTotal } = volumeVsService;
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: "Services",
+                data: servicesData,
+                backgroundColor: serviceColor,
+                barPercentage: 0.55,
+                categoryPercentage: 0.55,
+                borderRadius: 2.5,
+                stack: 'Stack 0',
+                order: 1,
+            },
+            {
+                label: "Volume",
+                data: volumeData,
+                backgroundColor: volumeColor,
+                barPercentage: 0.55,
+                categoryPercentage: 0.55,
+                borderRadius: 2.5,
+                stack: 'Stack 0',
+                order: 2,
+            },
+        ],
+    };
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                enabled: true,
+                titleFont: { family: "Poppins", weight: 500 },
+                bodyFont: { family: "Poppins", weight: 400 },
+                callbacks: {
+                    label: (context: any) => `${context.dataset.label}: ${context.parsed.y}`,
+                },
             },
         },
-    },
-    scales: {
-        x: {
-            grid: { display: false, drawBorder: false, lineWidth: 2 },
-            display: false,
+        scales: {
+            x: {
+                grid: { display: false, drawBorder: false, lineWidth: 2 },
+                display: false,
+            },
+            y: {
+                grid: { color: "#F0F0F7", drawBorder: false, lineWidth: 2 },
+                min: 0,
+                max: 1200,
+                display: false,
+            },
         },
-        y: {
-            grid: { color: "#F0F0F7", drawBorder: false, lineWidth: 2 },
-            min: 0,
-            max: 1200,
-            display: false,
-        },
-    },
-};
+    };
 
-export default function VolumeVsServiceChart() {
     return (
         <Card
             sx={{
@@ -128,7 +134,7 @@ export default function VolumeVsServiceChart() {
                         </Typography>
                     </Box>
                     <Typography sx={{ fontWeight: 500, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: "#222B45" }}>
-                        1,135
+                        {volumeTotal.toLocaleString()}
                     </Typography>
                 </Box>
                 <Divider orientation="vertical" flexItem sx={{ mx: 2, height: 32, bgcolor: "#E5E8EF" }} />
@@ -140,7 +146,7 @@ export default function VolumeVsServiceChart() {
                         </Typography>
                     </Box>
                     <Typography sx={{ fontWeight: 500, fontSize: 14, fontFamily: "'Poppins', sans-serif", color: "#222B45" }}>
-                        635
+                        {servicesTotal.toLocaleString()}
                     </Typography>
                 </Box>
             </Box>

@@ -18,9 +18,22 @@ const lastMonthData = [40, 45, 38, 39, 40, 42, 48];
 
 const lastMonthColor = "#1884F7";
 const thisMonthColor = "#27CFB6";
+interface CustomerSatisfactionProps {
+    customerSatisfaction: {
+        labels: string[];
+        lastMonth: number[];
+        thisMonth: number[];
+        summary: {
+            lastMonthTotal: number;
+            thisMonthTotal: number;
+        };
+    } | null;
+}
 
-export default function CustomerSatisfactionChart() {
+export default function CustomerSatisfactionChart({ customerSatisfaction }: CustomerSatisfactionProps) {
     const chartRef = useRef(null);
+
+    if (!customerSatisfaction) return <p>Loading...</p>;
 
     const getGradient = (ctx: any, color1: string, color2: string) => {
         const chart = ctx.chart;
@@ -33,11 +46,11 @@ export default function CustomerSatisfactionChart() {
     };
 
     const data = {
-        labels: months,
+        labels: customerSatisfaction.labels,
         datasets: [
             {
                 label: "Last Month",
-                data: lastMonthData,
+                data: customerSatisfaction.lastMonth,
                 borderColor: lastMonthColor,
                 backgroundColor: (ctx: any) =>
                     getGradient(ctx, "rgba(24,132,247,0.16)", "rgba(24,132,247,0)"),
@@ -51,7 +64,7 @@ export default function CustomerSatisfactionChart() {
             },
             {
                 label: "This Month",
-                data: thisMonthData,
+                data: customerSatisfaction.thisMonth,
                 borderColor: thisMonthColor,
                 backgroundColor: (ctx: any) =>
                     getGradient(ctx, "rgba(39,207,182,0.16)", "rgba(39,207,182,0)"),
@@ -179,7 +192,7 @@ export default function CustomerSatisfactionChart() {
                             color: "#222B45"
                         }}
                     >
-                        $3,004
+                        {`$${customerSatisfaction.summary.lastMonthTotal.toLocaleString()}`}
                     </Typography>
                 </Box>
 
@@ -215,7 +228,7 @@ export default function CustomerSatisfactionChart() {
                             color: "#222B45"
                         }}
                     >
-                        $4,504
+                        {`$${customerSatisfaction.summary.thisMonthTotal.toLocaleString()}`}
                     </Typography>
                 </Box>
             </Box>

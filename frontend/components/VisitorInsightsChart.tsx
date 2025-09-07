@@ -22,91 +22,101 @@ const loyalColor = "#A323FC";
 const newCustColor = "#FC5858";
 const uniqueColor = "#37D159";
 
-const data = {
-    labels: months,
-    datasets: [
-        {
-            label: "Loyal Customers",
-            data: loyalData,
-            borderColor: loyalColor,
-            borderWidth: 4,
-            pointBackgroundColor: loyalColor,
-            pointRadius: 0,
-            tension: 0.5,
-            fill: false,
-        },
-        {
-            label: "New Customers",
-            data: newCustData,
-            borderColor: newCustColor,
-            borderWidth: 4,
-            pointBackgroundColor: newCustColor,
-            pointRadius: (context: any) => (context.dataIndex === 6 ? 10 : 0),
-            pointBorderWidth: (context: any) => (context.dataIndex === 6 ? 4 : 0),
-            pointBorderColor: "#fff",
-            tension: 0.5,
-            fill: false,
-            order: 2,
-        },
-        {
-            label: "Unique Customers",
-            data: uniqueData,
-            borderColor: uniqueColor,
-            borderWidth: 4,
-            pointBackgroundColor: uniqueColor,
-            pointRadius: 0,
-            tension: 0.5,
-            fill: false,
-            order: 1,
-        },
-    ],
-};
+interface VisitorInsightsProps {
+    visitorInsights: {
+        labels: string[];
+        loyal: number[];
+        new: number[];
+        unique: number[];
+    } | null;
+}
 
-const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: { display: false },
-        tooltip: {
-            enabled: true,
-            titleFont: { family: "Poppins", weight: 500, },
-            bodyFont: { family: "Poppins", weight: 400, },
-        },
-    },
-    layout: { padding: { top: 30, right: 16, left: 0, bottom: 0 } },
-    scales: {
-        x: {
-            grid: { display: false, drawBorder: false },
-            ticks: {
-                color: "#7B91B0",
-                font: { family: "Poppins", size: 12, weight: 400 },
-            },
-        },
-        y: {
-            grid: {
-                color: "#E6E8EC",
-                drawBorder: false,
-            },
-            ticks: {
-                color: "#7B91B0",
-                font: { family: "Poppins", size: 12, weight: 400 },
-                stepSize: 100,
-                beginAtZero: true,
-                callback: (value: any) => value,
-            },
-            min: 0,
-            max: 400,
-        },
-    },
-    elements: {
-        line: { borderJoinStyle: 'round', capBezierPoints: true },
-        point: {},
-    },
-};
-
-export default function VisitorInsightsChart() {
+export default function VisitorInsightsChart({ visitorInsights }: VisitorInsightsProps) {
     const chartRef = useRef(null);
 
+    if (!visitorInsights) return <p>Loading...</p>;
+
+    const data = {
+        labels: visitorInsights.labels,
+        datasets: [
+            {
+                label: "Loyal Customers",
+                data: visitorInsights.loyal,
+                borderColor: loyalColor,
+                borderWidth: 4,
+                pointBackgroundColor: loyalColor,
+                pointRadius: 0,
+                tension: 0.5,
+                fill: false,
+            },
+            {
+                label: "New Customers",
+                data: visitorInsights.new,
+                borderColor: newCustColor,
+                borderWidth: 4,
+                pointBackgroundColor: newCustColor,
+                pointRadius: (context: any) => (context.dataIndex === 6 ? 10 : 0),
+                pointBorderWidth: (context: any) => (context.dataIndex === 6 ? 4 : 0),
+                pointBorderColor: "#fff",
+                tension: 0.5,
+                fill: false,
+                order: 2,
+            },
+            {
+                label: "Unique Customers",
+                data: visitorInsights.unique,
+                borderColor: uniqueColor,
+                borderWidth: 4,
+                pointBackgroundColor: uniqueColor,
+                pointRadius: 0,
+                tension: 0.5,
+                fill: false,
+                order: 1,
+            },
+        ],
+    };
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                enabled: true,
+                titleFont: { family: "Poppins", weight: 500, },
+                bodyFont: { family: "Poppins", weight: 400, },
+            },
+        },
+        layout: { padding: { top: 30, right: 16, left: 0, bottom: 0 } },
+        scales: {
+            x: {
+                grid: { display: false, drawBorder: false },
+                ticks: {
+                    color: "#7B91B0",
+                    font: { family: "Poppins", size: 12, weight: 400 },
+                },
+            },
+            y: {
+                grid: {
+                    color: "#E6E8EC",
+                    drawBorder: false,
+                },
+                ticks: {
+                    color: "#7B91B0",
+                    font: { family: "Poppins", size: 12, weight: 400 },
+                    stepSize: 100,
+                    beginAtZero: true,
+                    callback: (value: any) => value,
+                },
+                min: 0,
+                max: 400,
+            },
+        },
+        elements: {
+            line: { borderJoinStyle: 'round', capBezierPoints: true },
+            point: {},
+        },
+    };
     return (
         <Card
             sx={{

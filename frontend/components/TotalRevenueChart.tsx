@@ -10,89 +10,99 @@ import {
 } from "chart.js";
 
 ChartJS.register(LinearScale, CategoryScale, BarElement, Tooltip, Legend);
+interface TotalRevenueChartProps {
+  revenue: {
+    labels: string[];
+    onlineSales: number[];
+    offlineSales: number[];
+  } | null;
+}
 
-const data = {
-  labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-  datasets: [
-    {
-      label: "Online Sales",
-      data: [14000, 17000, 6000, 16000, 12000, 17000, 21000],
-      backgroundColor: "#1890FF",
-      borderRadius: 2.5,
-      barPercentage: 0.8,
-      categoryPercentage: 0.7
-    },
-    {
-      label: "Offline Sales",
-      data: [13000, 12000, 23000, 7000, 12000, 13000, 12000],
-      backgroundColor: "#35E2B4",
-      borderRadius: 2.5,
-      barPercentage: 0.8,
-      categoryPercentage: 0.7
-    },
-  ],
-};
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-      labels: {
-        font: {
-          size: 16,
-          family: "Poppins",
-          weight: 400,
+export default function TotalRevenueChart({ revenue }: TotalRevenueChartProps) {
+  if (!revenue) return <p>Loading...</p>;
+
+  const data = {
+    labels: revenue.labels,
+    datasets: [
+      {
+        label: "Online Sales",
+        data: revenue.onlineSales,
+        backgroundColor: "#1890FF",
+        borderRadius: 2.5,
+        barPercentage: 0.8,
+        categoryPercentage: 0.7
+      },
+      {
+        label: "Offline Sales",
+        data: revenue.offlineSales,
+        backgroundColor: "#35E2B4",
+        borderRadius: 2.5,
+        barPercentage: 0.8,
+        categoryPercentage: 0.7
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+          font: {
+            size: 16,
+            family: "Poppins",
+            weight: 400,
+          },
+          color: "#23235F",
+          usePointStyle: true,
+          padding: 30,
         },
-        color: "#23235F",
-        usePointStyle: true,
-        padding: 30,
+        position: "bottom" as const,
       },
-      position: "bottom" as const,
-    },
-    tooltip: {
-      enabled: true,
-      titleFont: { family: "Poppins", weight: 500 },
-      bodyFont: { family: "Poppins", weight: 400 },
-    },
-  },
-  layout: { padding: { left: 5, right: 5, top: 20, bottom: 5 } },
-  scales: {
-    x: {
-      grid: { display: false, drawBorder: false },
-      ticks: {
-        color: "#7B91B0",
-        font: {
-          size: 12,
-          family: "Poppins",
-          weight: 400,
-        },
+      tooltip: {
+        enabled: true,
+        titleFont: { family: "Poppins", weight: 500 },
+        bodyFont: { family: "Poppins", weight: 400 },
       },
     },
-    y: {
-      grid: {
-        color: "#F0F0F7",
-        drawBorder: false,
-        lineWidth: 2,
-      },
-      min: 0,
-      max: 25000,
-      ticks: {
-        color: "#7B91B0",
-        font: { size: 14, family: "Poppins", weight: 400 },
-        callback: (tickValue: string | number) => {
-          if (typeof tickValue === "number") {
-            return `${tickValue / 1000}k`;
-          }
-          return tickValue;
+    layout: { padding: { left: 5, right: 5, top: 20, bottom: 5 } },
+    scales: {
+      x: {
+        grid: { display: false, drawBorder: false },
+        ticks: {
+          color: "#7B91B0",
+          font: {
+            size: 12,
+            family: "Poppins",
+            weight: 400,
+          },
         },
       },
+      y: {
+        grid: {
+          color: "#F0F0F7",
+          drawBorder: false,
+          lineWidth: 2,
+        },
+        min: 0,
+        max: 25000,
+        ticks: {
+          color: "#7B91B0",
+          font: { size: 14, family: "Poppins", weight: 400 },
+          callback: (tickValue: string | number) => {
+            if (typeof tickValue === "number") {
+              return `${tickValue / 1000}k`;
+            }
+            return tickValue;
+          },
+        },
+      },
     },
-  },
-};
+  };
 
-export default function TotalRevenueChart() {
   return (
     <Card
       elevation={0}

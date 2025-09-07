@@ -3,16 +3,34 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-const HIGHLIGHT_COUNTRIES: Record<string, string> = {
-    "United States of America": "#FFB31B",
-    Brazil: "#FF5B6A",
-    Nigeria: "#5B8AFF",
-    "Saudi Arabia": "#06B09A",
-    China: "#A323FC",
-    Indonesia: "#29B97A",
-};
+interface CountrySalesMapProps {
+    countrySales: Record<string, number>;
+}
 
-export default function CountrySalesMap() {
+export default function CountrySalesMap({ countrySales }: CountrySalesMapProps) {
+    const baseColors: Record<string, string> = {
+        "United States of America": "rgba(255, 179, 27, 1)",
+        Brazil: "rgba(255, 91, 106, 1)",
+        Nigeria: "rgba(88, 138, 255, 1)",
+        "Saudi Arabia": "rgba(6, 176, 154, 1)",
+        China: "rgba(163, 35, 252, 1)",
+        Indonesia: "rgba(41, 185, 122, 1)",
+    };
+
+    const fallbackColor = "rgba(238, 238, 238, 1)";
+
+    const getColor = (countryName: string) => {
+        const base = baseColors[countryName] || fallbackColor;
+        if (!countrySales || !countrySales[countryName]) return base;
+
+        const opacity = 0.4 + 0.6 * (countrySales[countryName] / maxSales);
+
+        return base.replace(/rgba\((\d+), (\d+), (\d+), ([^)]+)\)/, `rgba($1, $2, $3, ${opacity})`);
+    };
+
+
+    const maxSales = Math.max(...Object.values(countrySales || {}), 1);
+
     return (
         <Card
             sx={{
@@ -43,21 +61,18 @@ export default function CountrySalesMap() {
                 Sales Mapping by Country
             </Typography>
             <Box sx={{ width: "100%", minHeight: 280, height: "stretch", mt: 1 }}>
-                <ComposableMap
-                    projection="geoMercator"
-                    style={{ width: "100%", height: "100%" }}
-                >
+                <ComposableMap projection="geoMercator" style={{ width: "100%", height: "100%" }}>
                     <ZoomableGroup zoom={1.2}>
                         <Geographies geography={geoUrl}>
                             {({ geographies }) =>
                                 geographies.map((geo) => {
                                     const countryName = geo.properties["name"];
-                                    const color = HIGHLIGHT_COUNTRIES[countryName] || "#EEEEEE";
+                                    const fillColor = getColor(countryName);
                                     return (
                                         <Geography
                                             key={geo.rsmKey}
                                             geography={geo}
-                                            fill={color}
+                                            fill={fillColor}
                                             stroke="#fff"
                                             style={{
                                                 default: { outline: "none" },

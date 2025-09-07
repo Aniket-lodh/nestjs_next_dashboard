@@ -12,59 +12,71 @@ import Image from "next/image";
 
 ChartJS.register(LinearScale, CategoryScale, BarElement, Tooltip, Legend);
 
+interface TargetVsRealityData {
+    labels: string[];
+    realitySales: number[];
+    targetSales: number[];
+    realitySummary: number;
+    targetSummary: number;
+}
+
 const labels = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July"];
-const data = {
-    labels,
-    datasets: [
-        {
-            label: "Reality Sales",
-            data: [6.2, 7.3, 5.8, 8.1, 7.6, 8.4, 7.9],
-            backgroundColor: "#5DE0A8",
-            borderRadius: 2.5,
-            barPercentage: 0.8,
-            categoryPercentage: 0.5,
-        },
-        {
-            label: "Target Sales",
-            data: [8.0, 9.2, 8.3, 9.8, 12.1, 12.5, 12.0],
-            backgroundColor: "#FFD81B",
-            borderRadius: 2.5,
-            barPercentage: 0.8,
-            categoryPercentage: 0.5,
-        },
-    ],
-};
-const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-        legend: { display: false },
-        tooltip: {
-            enabled: true,
-            titleFont: { family: "Poppins", weight: 500 },
-            bodyFont: { family: "Poppins", weight: 400 },
-            callbacks: {
-                label: (context: any) => `${context.dataset.label}: ${context.parsed.y}`,
+
+
+export default function TargetVsRealityChart({ chartData }: { chartData: TargetVsRealityData }) {
+    if (!chartData) return <p>Loading...</p>;
+
+    const data = {
+        labels: chartData.labels,
+        datasets: [
+            {
+                label: "Reality Sales",
+                data: chartData.realitySales,
+                backgroundColor: "#5DE0A8",
+                borderRadius: 2.5,
+                barPercentage: 0.8,
+                categoryPercentage: 0.5,
+            },
+            {
+                label: "Target Sales",
+                data: chartData.targetSales,
+                backgroundColor: "#FFD81B",
+                borderRadius: 2.5,
+                barPercentage: 0.8,
+                categoryPercentage: 0.5,
+            },
+        ],
+    };
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                enabled: true,
+                titleFont: { family: "Poppins", weight: 500 },
+                bodyFont: { family: "Poppins", weight: 400 },
+                callbacks: {
+                    label: (context: any) => `${context.dataset.label}: ${context.parsed.y}`,
+                },
             },
         },
-    },
-    scales: {
-        x: {
-            grid: { display: false, drawBorder: false },
-            ticks: {
-                color: "#2A3356",
-                font: { family: "Poppins", size: 12, weight: 400 },
+        scales: {
+            x: {
+                grid: { display: false, drawBorder: false },
+                ticks: {
+                    color: "#2A3356",
+                    font: { family: "Poppins", size: 12, weight: 400 },
+                },
+            },
+            y: {
+                grid: { display: false, drawBorder: false },
+                ticks: { display: false },
+                beginAtZero: true,
+                display: false,
             },
         },
-        y: {
-            grid: { display: false, drawBorder: false },
-            ticks: { display: false },
-            beginAtZero: true,
-            display: false,
-        },
-    },
-};
-export default function TargetVsRealityChart() {
+    };
     return (
         <Card
             sx={{
@@ -167,7 +179,7 @@ export default function TargetVsRealityChart() {
                                 fontSize: "14px",
                             }}
                         >
-                            8.823
+                            {`$${chartData.realitySummary}`}
                         </Typography>
                     </Box>
                 </Box>
@@ -229,7 +241,7 @@ export default function TargetVsRealityChart() {
                                 fontSize: "14px",
                             }}
                         >
-                            12.122
+                            {`$${chartData.targetSummary}`}
                         </Typography>
                     </Box>
                 </Box>

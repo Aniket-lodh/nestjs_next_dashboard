@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useDashboardStore } from "../store/dashboard";
 import TopBar from "../components/TopBar";
-import { Box} from "@mui/material";
+import { Box } from "@mui/material";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -61,8 +61,8 @@ export default function DashboardPage() {
             maxWidth: "100%",
           }}
         >
-          <TodaysSalesCard />
-          <VisitorInsightsChart />
+          <TodaysSalesCard metrics={metrics} />
+          <VisitorInsightsChart visitorInsights={visitors} />
         </Box>
 
         <Box
@@ -73,9 +73,9 @@ export default function DashboardPage() {
             alignItems: "stretch",
           }}
         >
-          <TotalRevenueChart />
-          <CustomerSatisfactionChart />
-          <TargetVsRealityChart />
+          <TotalRevenueChart revenue={revenue} />
+          <CustomerSatisfactionChart customerSatisfaction={satisfaction} />
+          <TargetVsRealityChart chartData={revenue?.targetVsReality} />
         </Box>
         <Box sx={{
           display: "flex",
@@ -83,9 +83,9 @@ export default function DashboardPage() {
           flexWrap: "wrap",
           alignItems: "stretch",
         }}>
-          <TopProductsTable />
-          <CountrySalesMap />
-          <VolumeVsServiceChart />
+          <TopProductsTable topProducts={topProducts} />
+          <CountrySalesMap countrySales={metrics?.countrySales || {}} />
+          <VolumeVsServiceChart volumeVsService={metrics?.volumeVsService || {}}/>
         </Box>
 
       </Box >

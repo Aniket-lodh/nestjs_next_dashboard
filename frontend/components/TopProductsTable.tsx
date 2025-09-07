@@ -1,45 +1,57 @@
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, LinearProgress, Card } from "@mui/material";
 
-const products = [
-    {
-        id: "01",
-        name: "Home Decor Range",
-        popularity: 45,
-        popularityColor: "#1890FF",
-        sales: "45%",
-        salesBg: "#E3F4FF",
-        salesColor: "#1890FF",
-    },
-    {
-        id: "02",
-        name: "Disney Princess Pink Bag 18'",
-        popularity: 29,
-        popularityColor: "#35E2B4",
-        sales: "29%",
-        salesBg: "#E2FFF3",
-        salesColor: "#37D159",
-    },
-    {
-        id: "03",
-        name: "Bathroom Essentials",
-        popularity: 18,
-        popularityColor: "#A323FC",
-        sales: "18%",
-        salesBg: "#F3E6FC",
-        salesColor: "#A323FC",
-    },
-    {
-        id: "04",
-        name: "Apple Smartwatches",
-        popularity: 25,
-        popularityColor: "#FF9900",
-        sales: "25%",
-        salesBg: "#FFF4D5",
-        salesColor: "#FF9900",
-    },
-];
+interface Product {
+    rank: number;
+    name: string;
+    popularity: number;
+    sales: number;
+}
+interface TopProductsTableProps {
+    topProducts: Product[] | null;
+}
+const popularityColors = ["#1890FF", "#35E2B4", "#A323FC", "#FF9900"];
 
-export default function TopProductsTable() {
+// const products = [
+//     {
+//         id: "01",
+//         name: "Home Decor Range",
+//         popularity: 45,
+//         popularityColor: "#1890FF",
+//         sales: "45%",
+//         salesBg: "#E3F4FF",
+//         salesColor: "#1890FF",
+//     },
+//     {
+//         id: "02",
+//         name: "Disney Princess Pink Bag 18'",
+//         popularity: 29,
+//         popularityColor: "#35E2B4",
+//         sales: "29%",
+//         salesBg: "#E2FFF3",
+//         salesColor: "#37D159",
+//     },
+//     {
+//         id: "03",
+//         name: "Bathroom Essentials",
+//         popularity: 18,
+//         popularityColor: "#A323FC",
+//         sales: "18%",
+//         salesBg: "#F3E6FC",
+//         salesColor: "#A323FC",
+//     },
+//     {
+//         id: "04",
+//         name: "Apple Smartwatches",
+//         popularity: 25,
+//         popularityColor: "#FF9900",
+//         sales: "25%",
+//         salesBg: "#FFF4D5",
+//         salesColor: "#FF9900",
+//     },
+// ];
+
+export default function TopProductsTable({ topProducts }: TopProductsTableProps) {
+    if (!topProducts) return <p>Loading...</p>;
     return (
         <TableContainer
             component={Card}
@@ -77,47 +89,56 @@ export default function TopProductsTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {products.map((product) => (
-                        <TableRow key={product.id} sx={{ height: 60 }}>
-                            <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif", pl: 4 }}>{product.id}</TableCell>
-                            <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif" }}>{product.name}</TableCell>
-                            <TableCell>
-                                <Box sx={{ minWidth: 80 }}>
-                                    <LinearProgress
-                                        variant="determinate"
-                                        value={product.popularity}
-                                        sx={{
-                                            height: 6,
-                                            borderRadius: 4,
-                                            backgroundColor: "#F3F4F8",
-                                            "& .MuiLinearProgress-bar": {
-                                                backgroundColor: product.popularityColor,
+                    {topProducts.map((product, index) => {
+                        const popularityColor = popularityColors[index % popularityColors.length];
+                        const salesBg = `${popularityColor}20`; // Light background with 12% opacity
+
+                        return (
+                            <TableRow key={product.rank} sx={{ height: 60 }}>
+                                <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif", pl: 4 }}>
+                                    {product.rank}
+                                </TableCell>
+                                <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif" }}>
+                                    {product.name}
+                                </TableCell>
+                                <TableCell>
+                                    <Box sx={{ minWidth: 80 }}>
+                                        <LinearProgress
+                                            variant="determinate"
+                                            value={product.popularity}
+                                            sx={{
+                                                height: 6,
                                                 borderRadius: 4,
-                                            },
+                                                backgroundColor: "#F3F4F8",
+                                                "& .MuiLinearProgress-bar": {
+                                                    backgroundColor: popularityColor,
+                                                    borderRadius: 4,
+                                                },
+                                            }}
+                                        />
+                                    </Box>
+                                </TableCell>
+                                <TableCell align="center" sx={{ pr: 4 }}>
+                                    <Box
+                                        sx={{
+                                            display: "inline-block",
+                                            px: 2,
+                                            py: 0.5,
+                                            bgcolor: salesBg,
+                                            color: popularityColor,
+                                            fontWeight: 400,
+                                            fontFamily: "'Poppins', sans-serif",
+                                            fontSize: 13,
+                                            borderRadius: "8px",
+                                            border: `1px solid ${popularityColor}`,
                                         }}
-                                    />
-                                </Box>
-                            </TableCell>
-                            <TableCell align="center" sx={{ pr: 4 }}>
-                                <Box
-                                    sx={{
-                                        display: "inline-block",
-                                        px: 2,
-                                        py: 0.5,
-                                        bgcolor: product.salesBg,
-                                        color: product.salesColor,
-                                        fontWeight: 400,
-                                        fontFamily: "'Poppins', sans-serif",
-                                        fontSize: 13,
-                                        borderRadius: "8px",
-                                        border: `1px solid ${product.salesColor}`,
-                                    }}
-                                >
-                                    {product.sales}
-                                </Box>
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                                    >
+                                        {product.sales}%
+                                    </Box>
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
