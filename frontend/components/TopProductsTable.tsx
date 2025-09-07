@@ -48,7 +48,6 @@ export default function TopProductsTable() {
                 borderRadius: "20px !important",
                 overflow: "hidden",
                 boxShadow: "0 6px 40px 0 rgba(135, 139, 174, 0.07)",
-                px: 4,
                 py: 3,
                 mb: 3,
                 flexGrow: 1,
@@ -59,36 +58,36 @@ export default function TopProductsTable() {
             <Typography
                 variant="h6"
                 sx={{
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontFamily: "'Poppins', sans-serif",
                     color: "text.heading",
-                    fontSize: "24px",
-                    m: 2,
+                    fontSize: "20px",
+                    px: 4,
                 }}
             >
                 Top Products
             </Typography>
-            <Table sx={{ minWidth: 600 }}>
+            <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell sx={{ color: "#A0A3BD", fontWeight: 600, fontSize: 18, fontFamily: "'Poppins', sans-serif", width: 70 }}>#</TableCell>
-                        <TableCell sx={{ color: "#A0A3BD", fontWeight: 600, fontSize: 18, fontFamily: "'Poppins', sans-serif" }}>Name</TableCell>
-                        <TableCell sx={{ color: "#A0A3BD", fontWeight: 600, fontSize: 18, fontFamily: "'Poppins', sans-serif" }}>Popularity</TableCell>
-                        <TableCell sx={{ color: "#A0A3BD", fontWeight: 600, fontSize: 18, fontFamily: "'Poppins', sans-serif", width: 80 }}>Sales</TableCell>
+                        <TableCell sx={{ color: "#96A5B8", fontWeight: 400, fontSize: 13, fontFamily: "'Poppins', sans-serif", pl: 4 }}>#</TableCell>
+                        <TableCell sx={{ color: "#96A5B8", fontWeight: 400, fontSize: 13, fontFamily: "'Poppins', sans-serif" }}>Name</TableCell>
+                        <TableCell sx={{ color: "#96A5B8", fontWeight: 400, fontSize: 13, fontFamily: "'Poppins', sans-serif" }}>Popularity</TableCell>
+                        <TableCell sx={{ color: "#96A5B8", fontWeight: 400, fontSize: 13, fontFamily: "'Poppins', sans-serif", pr: 4 }}>Sales</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {products.map((product) => (
-                        <TableRow key={product.id} sx={{ height: 70 }}>
-                            <TableCell sx={{ color: "#23235F", fontWeight: 600, fontSize: 17, fontFamily: "'Poppins', sans-serif" }}>{product.id}</TableCell>
-                            <TableCell sx={{ color: "#23235F", fontWeight: 500, fontSize: 18, fontFamily: "'Poppins', sans-serif" }}>{product.name}</TableCell>
+                        <TableRow key={product.id} sx={{ height: 60 }}>
+                            <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif", pl: 4 }}>{product.id}</TableCell>
+                            <TableCell sx={{ color: "#444A6D", fontWeight: 400, fontSize: 14, fontFamily: "'Poppins', sans-serif" }}>{product.name}</TableCell>
                             <TableCell>
-                                <Box sx={{ minWidth: 120, mr: 2 }}>
+                                <Box sx={{ minWidth: 80 }}>
                                     <LinearProgress
                                         variant="determinate"
                                         value={product.popularity}
                                         sx={{
-                                            height: 8,
+                                            height: 6,
                                             borderRadius: 4,
                                             backgroundColor: "#F3F4F8",
                                             "& .MuiLinearProgress-bar": {
@@ -99,7 +98,7 @@ export default function TopProductsTable() {
                                     />
                                 </Box>
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell align="center" sx={{ pr: 4 }}>
                                 <Box
                                     sx={{
                                         display: "inline-block",
@@ -107,11 +106,11 @@ export default function TopProductsTable() {
                                         py: 0.5,
                                         bgcolor: product.salesBg,
                                         color: product.salesColor,
-                                        fontWeight: 700,
+                                        fontWeight: 400,
                                         fontFamily: "'Poppins', sans-serif",
-                                        fontSize: 17,
-                                        borderRadius: 2,
-                                        border: `1.5px solid ${product.salesColor}`,
+                                        fontSize: 13,
+                                        borderRadius: "8px",
+                                        border: `1px solid ${product.salesColor}`,
                                     }}
                                 >
                                     {product.sales}
