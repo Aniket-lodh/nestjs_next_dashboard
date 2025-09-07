@@ -1,4 +1,3 @@
-// src/dashboard/dashboard.controller.ts
 import { Controller, Get } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 
