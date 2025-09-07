@@ -49,7 +49,7 @@ export default function TodaysSalesCard() {
                 overflow: "hidden",
                 flexGrow: 1,
                 flexBasis: 0,
-                minWidth: 400,
+                minWidth: 650,
                 maxWidth: "70%",
                 display: "flex",
                 flexDirection: "column",
@@ -93,71 +93,79 @@ export default function TodaysSalesCard() {
                     Export
                 </Button>
             </Box>
-            <Grid container spacing={3} mt={1} mb={3}>
+            <Box sx={{
+                "display": "flex",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "gap": 3,
+                "mb": 3,
+                "width": "100%",
+                "flexWrap": "wrap",
+            }}>
                 {kpiData.map((kpi) => (
-                    <Grid size={{ xs: 12, md: 3, sm: 6 }} key={kpi.label}>
-                        <Paper
-                            elevation={0}
+                    <Paper
+                        elevation={0}
+                        key={kpi.label}
+                        sx={{
+                            bgcolor: kpi.cardBg,
+                            borderRadius: "16px",
+                            p: 2,
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            height: "fit-content",
+                            flexGrow: 1
+                        }}
+                    >
+                        <Box
                             sx={{
-                                bgcolor: kpi.cardBg,
-                                borderRadius: "16px",
-                                p: 2,
+                                width: 40,
+                                height: 40,
+                                bgcolor: "white",
+                                borderRadius: "50%",
                                 display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-                                height: "100%",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                mb: 2,
                             }}
                         >
-                            <Box
-                                sx={{
-                                    width: 40,
-                                    height: 40,
-                                    bgcolor: "white",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    mb: 2,
-                                }}
-                            >
-                                <Image src={kpi.icon} alt={kpi.label} width={40} height={40} />
-                            </Box>
-                            <Typography
-                                sx={{
-                                    fontFamily: "'Poppins', sans-serif",
-                                    fontWeight: 600,
-                                    fontSize: "24px",
-                                    color: "#1B254B",
-                                }}
-                            >
-                                {kpi.value}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    fontFamily: "'Poppins', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "16px",
-                                    color: "hsla(215, 22%, 33%, 1)",
-                                    mt: 1,
-                                }}
-                            >
-                                {kpi.label}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    fontFamily: "'Poppins', sans-serif",
-                                    fontWeight: 500,
-                                    fontSize: "12px",
-                                    color: kpi.changeColor,
-                                    mt: 1,
-                                }}
-                            >
-                                {kpi.change}
-                            </Typography>
-                        </Paper>
-                    </Grid>
+                            <Image src={kpi.icon} alt={kpi.label} width={40} height={40} />
+                        </Box>
+                        <Typography
+                            sx={{
+                                fontFamily: "'Poppins', sans-serif",
+                                fontWeight: 600,
+                                fontSize: "24px",
+                                color: "#1B254B",
+                            }}
+                        >
+                            {kpi.value}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontFamily: "'Poppins', sans-serif",
+                                fontWeight: 500,
+                                fontSize: "16px",
+                                color: "hsla(215, 22%, 33%, 1)",
+                                mt: 1,
+                            }}
+                        >
+                            {kpi.label}
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontFamily: "'Poppins', sans-serif",
+                                fontWeight: 500,
+                                fontSize: "12px",
+                                color: kpi.changeColor,
+                                mt: 1,
+                            }}
+                        >
+                            {kpi.change}
+                        </Typography>
+                    </Paper>
                 ))}
-            </Grid>
+            </Box>
         </Card>
     );
 }
