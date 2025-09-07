@@ -118,7 +118,7 @@ function VisitorInsightsChart() {
         >
             <Typography
                 variant="h6"
-                sx={{ fontWeight: 700, mb: 1, color: "text.heading", fontFamily: "'Poppins', sans-serif", fontSize: "22px" }}
+                sx={{ fontWeight: 600, color: "text.heading", lineHeight: "32px", fontFamily: "'Poppins', sans-serif", fontSize: "20px" }}
             >
                 Visitor Insights
             </Typography>
@@ -168,22 +168,22 @@ function VisitorInsightsChart() {
                 />
             </Box>
 
-            <Box mt={2} display="flex" justifyContent="center" alignItems="center" gap={5}>
+            <Box display="flex" justifyContent="center" alignItems="center" gap={5}>
                 <Box display="flex" alignItems="center" gap={1}>
-                    <Box sx={{ width: 20, height: 8, bgcolor: "#A323FC", borderRadius: 2 }} />
-                    <Typography sx={{ fontWeight: 500, color: "text.heading", fontFamily: "'Poppins', sans-serif" }}>
+                    <Box sx={{ width: 8, height: 8, bgcolor: "#A323FC", borderRadius: .5 }} />
+                    <Typography sx={{ fontWeight: 500, fontSize: "14px", color: "hsla(221, 15%, 32%, 1)", fontFamily: "'Poppins', sans-serif" }}>
                         Loyal Customers
                     </Typography>
                 </Box>
                 <Box display="flex" alignItems="center" gap={1}>
-                    <Box sx={{ width: 20, height: 8, bgcolor: "#FC5858", borderRadius: 2 }} />
-                    <Typography sx={{ fontWeight: 500, color: "text.heading", fontFamily: "'Poppins', sans-serif" }}>
+                    <Box sx={{ width: 8, height: 8, bgcolor: "#FC5858", borderRadius: .5 }} />
+                    <Typography sx={{ fontWeight: 500, fontSize: "14px", color: "hsla(221, 15%, 32%, 1)", fontFamily: "'Poppins', sans-serif" }}>
                         New Customers
                     </Typography>
                 </Box>
                 <Box display="flex" alignItems="center" gap={1}>
-                    <Box sx={{ width: 20, height: 8, bgcolor: "#37D159", borderRadius: 2 }} />
-                    <Typography sx={{ fontWeight: 500, color: "text.heading", fontFamily: "'Poppins', sans-serif" }}>
+                    <Box sx={{ width: 8, height: 8, bgcolor: "#37D159", borderRadius: .5 }} />
+                    <Typography sx={{ fontWeight: 500, fontSize: "14px", color: "hsla(221, 15%, 32%, 1)", fontFamily: "'Poppins', sans-serif" }}>
                         Unique Customers
                     </Typography>
                 </Box>

@@ -62,10 +62,10 @@ export default function TodaysSalesCard() {
                 <Box>
                     <Typography
                         variant="h6"
-                        fontWeight={700}
+                        fontWeight={600}
                         fontFamily="'Poppins', sans-serif"
                         color="text.heading"
-                        sx={{ fontSize: "22px" }}
+                        sx={{ fontSize: "20px" }}
                     >
                         Today&apos;s Sales
                     </Typography>
@@ -73,7 +73,7 @@ export default function TodaysSalesCard() {
                         variant="body2"
                         color="text.subheading"
                         fontFamily="'Poppins', sans-serif"
-                        sx={{ fontWeight: 400, fontSize: "16px" }}
+                        sx={{ fontWeight: 400, fontSize: "16px", lineHeight: "30px" }}
                     >
                         Sales Summery
                     </Typography>
@@ -101,7 +101,7 @@ export default function TodaysSalesCard() {
                             sx={{
                                 bgcolor: kpi.cardBg,
                                 borderRadius: "16px",
-                                p: 3,
+                                p: 2,
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "flex-start",
@@ -125,8 +125,8 @@ export default function TodaysSalesCard() {
                             <Typography
                                 sx={{
                                     fontFamily: "'Poppins', sans-serif",
-                                    fontWeight: 700,
-                                    fontSize: "28px",
+                                    fontWeight: 600,
+                                    fontSize: "24px",
                                     color: "#1B254B",
                                 }}
                             >
@@ -136,7 +136,7 @@ export default function TodaysSalesCard() {
                                 sx={{
                                     fontFamily: "'Poppins', sans-serif",
                                     fontWeight: 500,
-                                    fontSize: "17px",
+                                    fontSize: "16px",
                                     color: "hsla(215, 22%, 33%, 1)",
                                     mt: 1,
                                 }}
@@ -146,8 +146,8 @@ export default function TodaysSalesCard() {
                             <Typography
                                 sx={{
                                     fontFamily: "'Poppins', sans-serif",
-                                    fontWeight: 400,
-                                    fontSize: "14px",
+                                    fontWeight: 500,
+                                    fontSize: "12px",
                                     color: kpi.changeColor,
                                     mt: 1,
                                 }}

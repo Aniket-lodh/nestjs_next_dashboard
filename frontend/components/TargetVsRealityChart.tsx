@@ -20,21 +20,20 @@ const data = {
             label: "Reality Sales",
             data: [6.2, 7.3, 5.8, 8.1, 7.6, 8.4, 7.9],
             backgroundColor: "#5DE0A8",
-            borderRadius: 8,
-            barPercentage: 0.5,
+            borderRadius: 2.5,
+            barPercentage: 0.8,
             categoryPercentage: 0.5,
         },
         {
             label: "Target Sales",
             data: [8.0, 9.2, 8.3, 9.8, 12.1, 12.5, 12.0],
             backgroundColor: "#FFD81B",
-            borderRadius: 8,
-            barPercentage: 0.5,
+            borderRadius: 2.5,
+            barPercentage: 0.8,
             categoryPercentage: 0.5,
         },
     ],
 };
-
 const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -49,34 +48,18 @@ const options = {
             },
         },
     },
-    layout: { padding: { left: 5, right: 5, top: 20, bottom: 5 } },
     scales: {
         x: {
             grid: { display: false, drawBorder: false },
-            ticks: {
-                color: "#3A3A53",
-                font: { size: 16, family: "Poppins", weight: 600 },
-                padding: 8,
-            },
+            ticks: { display: false },
         },
         y: {
-            grid: {
-                color: "#F0F0F7",
-                drawBorder: false,
-                lineWidth: 2,
-            },
-            min: 0,
-            max: 14,
-            ticks: {
-                color: "#A2A2B7",
-                font: { size: 15, family: "Poppins", weight: 500 },
-                stepSize: 2,
-                callback: (value: any) => value,
-            },
+            grid: { display: false, drawBorder: false },
+            ticks: { display: false },
+            beginAtZero: true,
         },
     },
 };
-
 export default function TargetVsRealityChart() {
     return (
         <Card
@@ -98,7 +81,6 @@ export default function TargetVsRealityChart() {
                 variant="h6"
                 sx={{
                     fontWeight: 600,
-                    mb: 2,
                     fontFamily: "'Poppins', sans-serif",
                     color: "text.heading",
                     fontSize: "20px",
@@ -111,7 +93,145 @@ export default function TargetVsRealityChart() {
             <Box sx={{ width: "100%", minHeight: 150, height: "stretch", mb: 1 }}>
                 <Bar data={data} options={options} height={150} width={"100%"} />
             </Box>
+            <Box
+                sx={{
+                    bgcolor: "transparent",
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "start",
+                    flexDirection: "column",
+                    gap: 2
+                }}
+            >
 
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        bgcolor: "transparent",
+                        p: 0,
+                        gap: 2,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            bgcolor: "#DDFDF1",
+                            borderRadius: 2,
+                            p: 1.2,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Image
+                            src="reality_sales.svg"
+                            alt="Reality"
+                            width={28}
+                            height={28}
+                        />
+                    </Box>
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontWeight: 600,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "text.heading",
+                                fontSize: 12,
+                                lineHeight: "16px",
+                            }}
+                        >
+                            Reality Sales
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontWeight: 400,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "#737791",
+                                fontSize: "10px",
+                            }}
+                        >
+                            Global
+                        </Typography>
+                    </Box>
+                    <Box sx={{ ml: "auto" }}>
+                        <Typography
+                            sx={{
+                                fontWeight: 500,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "#27AE60",
+                                fontSize: "14px",
+                            }}
+                        >
+                            8.823
+                        </Typography>
+                    </Box>
+                </Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        bgcolor: "transparent",
+                        p: 0,
+                        gap: 2,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            bgcolor: "#FFF3BC",
+                            borderRadius: 2,
+                            p: 1.2,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Image
+                            src="target_sales.svg"
+                            alt="Reality"
+                            width={28}
+                            height={28}
+                        />
+                    </Box>
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontWeight: 600,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "text.heading",
+                                fontSize: 12,
+                                lineHeight: "16px",
+                            }}
+                        >
+                            Target Sales
+                        </Typography>
+                        <Typography
+                            sx={{
+                                fontWeight: 400,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "#737791",
+                                fontSize: "10px",
+                            }}
+                        >
+                            Commercial
+                        </Typography>
+                    </Box>
+                    <Box sx={{ ml: "auto" }}>
+                        <Typography
+                            sx={{
+                                fontWeight: 500,
+                                fontFamily: "'Poppins', sans-serif",
+                                color: "#FFA412",
+                                fontSize: "14px",
+                            }}
+                        >
+                            12.122
+                        </Typography>
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* 
             <Box
                 sx={{
                     bgcolor: "transparent",
@@ -124,7 +244,7 @@ export default function TargetVsRealityChart() {
                     pt: 1,
                 }}
             >
-                
+
                 <Box
                     sx={{
                         display: "flex",
@@ -228,7 +348,7 @@ export default function TargetVsRealityChart() {
                         12.122
                     </Typography>
                 </Box>
-            </Box>
+            </Box> */}
         </Card>
     );
 }

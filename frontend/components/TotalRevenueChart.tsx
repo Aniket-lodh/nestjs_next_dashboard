@@ -18,17 +18,17 @@ const data = {
       label: "Online Sales",
       data: [14000, 17000, 6000, 16000, 12000, 17000, 21000],
       backgroundColor: "#1890FF",
-      borderRadius: 10,
-      barPercentage: 0.45,
-      categoryPercentage: 0.42,
+      borderRadius: 2.5,
+      barPercentage: 0.8,
+      categoryPercentage: 0.7
     },
     {
       label: "Offline Sales",
       data: [13000, 12000, 23000, 7000, 12000, 13000, 12000],
       backgroundColor: "#35E2B4",
-      borderRadius: 10,
-      barPercentage: 0.45,
-      categoryPercentage: 0.42,
+      borderRadius: 2.5,
+      barPercentage: 0.8,
+      categoryPercentage: 0.7
     },
   ],
 };
@@ -62,8 +62,12 @@ const options = {
     x: {
       grid: { display: false, drawBorder: false },
       ticks: {
-        color: "#46465A",
-        font: { size: 18, family: "Poppins", weight: 600 },
+        color: "#7B91B0",
+        font: {
+          size: 12,
+          family: "Poppins",
+          weight: 400,
+        },
       },
     },
     y: {
@@ -75,8 +79,8 @@ const options = {
       min: 0,
       max: 25000,
       ticks: {
-        color: "#A2A2B7",
-        font: { size: 16, family: "Poppins", weight: 500 },
+        color: "#7B91B0",
+        font: { size: 14, family: "Poppins", weight: 400 },
         callback: (tickValue: string | number) => {
           if (typeof tickValue === "number") {
             return `${tickValue / 1000}k`;
@@ -111,11 +115,11 @@ export default function TotalRevenueChart() {
       <Typography
         variant="h6"
         sx={{
-          fontWeight: 700,
-          mb: 2,
+          fontWeight: 600,
           fontFamily: "'Poppins', sans-serif",
           color: "text.heading",
-          fontSize: { xs: "20px", md: "24px" },
+          fontSize: "20px",
+          lineHeight: "32px"
         }}
       >
         Total Revenue
@@ -134,13 +138,13 @@ export default function TotalRevenueChart() {
       >
         <Box display="flex" alignItems="center" gap={1}>
           <Box sx={{ width: 20, height: 8, bgcolor: "#1890FF", borderRadius: 2 }}></Box>
-          <Typography sx={{ fontWeight: 500, color: "#23235F", fontFamily: "'Poppins', sans-serif" }}>
+          <Typography sx={{ fontWeight: 400, fontSize: "14px", color: "#23235F", fontFamily: "'Poppins', sans-serif" }}>
             Online Sales
           </Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
           <Box sx={{ width: 20, height: 8, bgcolor: "#35E2B4", borderRadius: 2 }}></Box>
-          <Typography sx={{ fontWeight: 500, color: "#23235F", fontFamily: "'Poppins', sans-serif" }}>
+          <Typography sx={{ fontWeight: 400, fontSize: "14px", color: "#23235F", fontFamily: "'Poppins', sans-serif" }}>
             Offline Sales
           </Typography>
         </Box>

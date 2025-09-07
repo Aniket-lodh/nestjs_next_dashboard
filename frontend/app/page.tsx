@@ -48,7 +48,7 @@ export default function DashboardPage() {
 
   if (!metrics) return <p>Loading...</p>;
 
-  return (
+  return (  
     <>
       <TopBar />
       <Box sx={{ p: 3 }}>

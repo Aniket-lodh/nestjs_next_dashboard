@@ -12,9 +12,9 @@ import {
 import { useRef } from "react";
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
 
-const months = ["", "", "", "", "", "", "", "", "", "", "", ""];
-const lastMonthData = [40, 42, 38, 28, 28, 29, 37, 37, 36, 36, 38, 41];
-const thisMonthData = [54, 54, 57, 55, 56, 59, 56, 56, 58, 57, 61, 70];
+const months = ["", "", "", "", "", "", ""];
+const thisMonthData = [64, 52, 55, 50, 57, 50, 61];
+const lastMonthData = [40, 45, 38, 39, 40, 42, 48];
 
 const lastMonthColor = "#1884F7";
 const thisMonthColor = "#27CFB6";
@@ -43,8 +43,9 @@ export default function CustomerSatisfactionChart() {
                     getGradient(ctx, "rgba(24,132,247,0.16)", "rgba(24,132,247,0)"),
                 tension: 0.35,
                 pointBackgroundColor: lastMonthColor,
-                pointRadius: 6,
-                pointBorderWidth: 3,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBorderWidth: 2,
                 fill: true,
                 order: 2,
             },
@@ -56,11 +57,13 @@ export default function CustomerSatisfactionChart() {
                     getGradient(ctx, "rgba(39,207,182,0.16)", "rgba(39,207,182,0)"),
                 tension: 0.35,
                 pointBackgroundColor: thisMonthColor,
-                pointRadius: 6,
-                pointBorderWidth: 3,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                pointBorderWidth: 2,
                 fill: true,
                 order: 1,
-            },
+            }
+
         ],
     };
 
@@ -79,7 +82,6 @@ export default function CustomerSatisfactionChart() {
                 bodyFont: { family: "Poppins", weight: 400 },
             },
         },
-        layout: { padding: { top: 16, bottom: 5, left: 5, right: 5 } },
         scales: {
             x: {
                 display: false,
@@ -117,7 +119,6 @@ export default function CustomerSatisfactionChart() {
                 variant="h6"
                 sx={{
                     fontWeight: 600,
-                    mb: 2,
                     fontFamily: "'Poppins', sans-serif",
                     color: "text.heading",
                     fontSize: "20px",
@@ -161,7 +162,7 @@ export default function CustomerSatisfactionChart() {
                         />
                         <Typography
                             sx={{
-                                color: "#A0A3BD",
+                                color: "#96A5B8",
                                 fontFamily: "'Poppins', sans-serif",
                                 fontWeight: 400,
                                 fontSize: 16,
@@ -175,7 +176,7 @@ export default function CustomerSatisfactionChart() {
                             fontWeight: 500,
                             fontSize: 14,
                             fontFamily: "'Poppins', sans-serif",
-                            color: "text.heading",
+                            color: "#222B45"
                         }}
                     >
                         $3,004
@@ -197,7 +198,7 @@ export default function CustomerSatisfactionChart() {
                         />
                         <Typography
                             sx={{
-                                color: "#A0A3BD",
+                                color: "#96A5B8",
                                 fontFamily: "'Poppins', sans-serif",
                                 fontWeight: 400,
                                 fontSize: 16,
@@ -211,7 +212,7 @@ export default function CustomerSatisfactionChart() {
                             fontWeight: 500,
                             fontSize: 14,
                             fontFamily: "'Poppins', sans-serif",
-                            color: "text.heading",
+                            color: "#222B45"
                         }}
                     >
                         $4,504
